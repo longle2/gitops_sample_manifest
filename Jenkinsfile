@@ -18,7 +18,8 @@ node {
                         sh "cat deployment.yaml"
                         sh "git add ."
                         sh "git commit -m 'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}'"
-                        sh 'GIT_SSH_COMMAND="ssh -i $SSH_KEY" git push git@github.com:longle2/gitops_sample_manifest.git main'
+                        sh "git checkout main"
+                        sh 'GIT_SSH_COMMAND="ssh -i $SSH_KEY" git push git@github.com:longle2/gitops_sample_manifest.git'
                     }
                     // withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                     //     //def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
