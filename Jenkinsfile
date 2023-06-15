@@ -8,7 +8,7 @@ node {
     stage('Update GIT') {
             script {
                 catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-                  withCredentials([sshUserPrivateKey(credentialsId: '9a987cbd-6fc0-4c34-952b-910e9c96798f', keyFileVariable: 'SSH_KEY', usernameVariable: 'dragonus282')]) {
+                  withCredentials([sshUserPrivateKey(credentialsId: '9a987cbd-6fc0-4c34-952b-910e9c96798f', keyFileVariable: 'SSH_KEY')]) {
                         //def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
                         sh "git config user.email dragonus282@gmail.com"
                         sh "git config user.name dragonus282"
@@ -18,7 +18,7 @@ node {
                         sh "cat deployment.yaml"
                         sh "git add ."
                         sh "git commit -m 'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}'"
-                        sh 'GIT_SSH_COMMAND="ssh -i $SSH_KEY" git push origin main'
+                        sh 'GIT_SSH_COMMAND="ssh -i $SSH_KEY" git push git@github.com:longle2/gitops_sample_manifest.git main'
                     }
                     // withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                     //     //def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
