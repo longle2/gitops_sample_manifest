@@ -18,7 +18,7 @@ spec:
         app: flaskdemo
     spec:
       containers:
-      - image: 035296596762.dkr.ecr.ap-southeast-1.amazonaws.com/gitops-sample-app:29
+      - image: 035296596762.dkr.ecr.ap-southeast-1.amazonaws.com/gitops-sample-app:40
         name: flaskdemo
         resources: {}
 status: {}
