@@ -18,7 +18,7 @@ node {
                         sh "cat deployment.yaml"
                         sh "git add ."
                         sh "git commit -m 'Done by Jenkins Job changemanifest: ${env.BUILD_NUMBER}'"
-                        GIT_SSH_COMMAND="ssh -i $SSH_KEY" git push origin feature/Jenkinsfile
+                        sh "GIT_SSH_COMMAND="ssh -i $SSH_KEY" git push origin feature/Jenkinsfile"
                     }
                     // withCredentials([usernamePassword(credentialsId: 'github', passwordVariable: 'GIT_PASSWORD', usernameVariable: 'GIT_USERNAME')]) {
                     //     //def encodedPassword = URLEncoder.encode("$GIT_PASSWORD",'UTF-8')
