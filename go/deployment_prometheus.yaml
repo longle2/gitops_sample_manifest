@@ -21,7 +21,7 @@ spec:
         app: go-prometheus
     spec:
       containers:
-      - image: 035296596762.dkr.ecr.ap-southeast-1.amazonaws.com/prometheus_sample_go:latest
+      - image: 035296596762.dkr.ecr.ap-southeast-1.amazonaws.com/prometheus_sample_go:1
         name: go-prometheus
         resources: {}
 status: {}
