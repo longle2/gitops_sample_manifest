@@ -3,44 +3,44 @@ kind: Deployment
 metadata:
   # creationTimestamp: null
   labels:
-    app: golang_prometheus
-  name: golang_prometheus
+    app: flaskdemo
+  name: flaskdemo
 spec:
   replicas: 0
   selector:
     matchLabels:
-      app: golang_prometheus
+      app: flaskdemo
   strategy: {}
   template:
     metadata:
       # creationTimestamp: null
       labels:
-        app: golang_prometheus
+        app: flaskdemo
     spec:
       containers:
-      - image: 035296596762.dkr.ecr.ap-southeast-1.amazonaws.com/prometheus_sample_go:latest
-        name: golang_prometheus
+      - image: 035296596762.dkr.ecr.ap-southeast-1.amazonaws.com/gitops-sample-app:42
+        name: flaskdemo
         resources: {}
 status: {}
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: golang_prometheus
+  name: lb-service
   labels:
-    app: golang_prometheus
+    app: lb-service
 spec:
   type: NodePort
   ports:
   - port: 80
     targetPort: 5000
   selector:
-    app: golang_prometheus
+    app: flaskdemo
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: "golang_prometheus"
+  name: "lb-service"
   annotations:
     nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     nginx.ingress.kubernetes.io/preserve-trailing-slash: "true"
@@ -52,7 +52,7 @@ metadata:
     alb.ingress.kubernetes.io/ssl-redirect: '443'
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:ap-southeast-1:035296596762:certificate/65b6ab5d-6da5-4810-92af-4442113860f8
   labels:
-    app: golang_prometheus
+    app: lb-service
 spec:
   rules:
     - http:
@@ -61,6 +61,6 @@ spec:
           pathType: Prefix
           backend:
             service: 
-              name: "golang_prometheus"
+              name: "lb-service"
               port: 
                 number: 80
