@@ -18,7 +18,7 @@ spec:
         app: go_prometheus
     spec:
       containers:
-      - image: 035296596762.dkr.ecr.ap-southeast-1.amazonaws.com/gitops-sample-app:42
+      - image: 035296596762.dkr.ecr.ap-southeast-1.amazonaws.com/prometheus_sample_go:latest
         name: go_prometheus
         resources: {}
 status: {}
