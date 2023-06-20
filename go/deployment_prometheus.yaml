@@ -3,23 +3,23 @@ kind: Deployment
 metadata:
   # creationTimestamp: null
   labels:
-    app: go_prometheus
-  name: go_prometheus
+    app: go-prometheus
+  name: go-prometheus
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: go_prometheus
+      app: go-prometheus
   strategy: {}
   template:
     metadata:
       # creationTimestamp: null
       labels:
-        app: go_prometheus
+        app: go-prometheus
     spec:
       containers:
       - image: 035296596762.dkr.ecr.ap-southeast-1.amazonaws.com/prometheus_sample_go:latest
-        name: go_prometheus
+        name: go-prometheus
         resources: {}
 status: {}
 ---
@@ -35,7 +35,7 @@ spec:
   - port: 80
     targetPort: 80
   selector:
-    app: go_prometheus
+    app: go-prometheus
 ---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
